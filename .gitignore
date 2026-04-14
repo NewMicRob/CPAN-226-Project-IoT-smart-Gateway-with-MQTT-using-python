@@ -1,0 +1,12 @@
+# Environment
+iot_env/
+
+# Python junk
+__pycache__/
+*.py[cod]
+
+# Mac junk
+.DS_Store
+
+# Database
+*.db
