@@ -8,7 +8,7 @@ conStat = "Gateway not connected to MQTT"
 currError = ""
 
 # when connecting, updates status
-def onConnect(client, userdata, flags, rc, properites=None):
+def onConnect(client, userdata, flags, rc, properties=None):
     global conStat, currError
     if rc == 0:
         conStat = "Gateway connected to MQTT"
@@ -19,9 +19,11 @@ def onConnect(client, userdata, flags, rc, properites=None):
         currError = f"Connection failed. Error: {rc}"
         print(f"MQTT connection failed with code {rc}")
         
+# mqtt config
 mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="mqtt_gateway")
 mqtt_client.on_connect = onConnect
 
+# connection
 try:
     mqtt_client.connect("localhost", 1883)
     mqtt_client.loop_start()
@@ -30,10 +32,12 @@ try:
 except Exception as e:
     print(f"Connection to MQTT error: {e}")
     currError = str(e)
-    
+
+# route for render and error logging
 @app.route('/')
 def index():
     return f"<h1>{conStat}</h1><p>Error log: {currError}</p>"
 
+# runs the app on port 8080 since mac uses 5000 for airplay
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False, port=8080)
