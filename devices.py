@@ -13,10 +13,12 @@ device_client.connect("localhost", 1883)
 try:
     while True:
         temperature = round(random.uniform(5.0, 50.0), 2)
+        tempFormat = "{:.2f}".format(temperature)
+
         
         # confirmation of data sent
-        print(f"Sending: {temperature}°C -- topic: device/1/temperature")
-        device_client.publish("device/1/temperature", temperature)
+        print(f"Sending: {tempFormat}°C -- topic: device/1/temperature")
+        device_client.publish("device/1/temperature", tempFormat)
         
         time.sleep(5)
 
