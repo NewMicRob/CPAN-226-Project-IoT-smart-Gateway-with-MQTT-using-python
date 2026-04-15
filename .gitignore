@@ -1,12 +1,26 @@
 # Environment
 iot_env/
+venv/
+ENV/
 
-# Python junk
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
 
-# Mac junk
+# Mac
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs
+.vscode/
+.idea/
 
 # Database
 *.db
+*.log
+
+# Security
+.env
