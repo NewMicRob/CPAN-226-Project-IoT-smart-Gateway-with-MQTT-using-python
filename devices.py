@@ -27,8 +27,7 @@ class Devices:
                 for i in range(1, self.deviceCount + 1):
                     devId = f"device_{i}"
                     
-                    # temp range between 5 - 50
-                    temperature = round(random.uniform(5.0, 50.00), 2)
+                    temperature = random.randint(5, 46) 
                     
                     # data sent to dictionaries
                     payload = {
