@@ -1,36 +1,61 @@
-# CPAN226: Network Programming – Final Project
+# IoT Smart-Gateway with MQTT Project
 
-**Course:** CPAN226: Network Programming  
-**Term:** Winter/Summer 2026  
-**Format:** Individual Project
-
----
-
-## 1. Project Overview
-The following 12 projects are designed to bridge the gap between foundational socket programming and the modern network landscape of 2026, which prioritizes **Zero Trust Security**, **AI-driven automation**, and **High-Concurrency architectures**. Students may choose one project from the list below.
+**Developed by:** Michael R. Newman  
+**Course:** CPAN-226  Network & Telecomm. Programming
 
 ---
 
-## 2. Updated Project List (2026)
-
-### Python:
-**IoT Smart-Gateway with MQTT:** Create a central hub that collects data from multiple simulated IoT devices using the MQTT protocol, providing a real-time dashboard and automated device isolation.
+## Project Summary
+This project implements a **Smart-Gateway system**. It simulates 20 independent devices that publish temperature to a **Mosquitto Broker**. A central **Gateway** subscribes to these topics, processes the incoming JSON data, and updates a **Flask dashboard** in real-time.
 
 ---
 
-## 3. Submission Requirements
-All students must submit the following three components:
-1. **Project Report:** A PDF document detailing the architecture, challenges faced, and how network protocols were implemented.
-2. **GitHub Repository Link:** A link to a private or public repository containing the full source code and a README.md with setup instructions.
-3. **YouTube Video Link:** A link to a private/unlisted video (Max 5 minutes) demonstrating the functional application and explaining the code logic.
+## The Three Pillars
+I built this project based on three main goals:
+
+* **Sustainability:** I used **Object-Oriented Programming (OOP)**. This makes the code clean and easy to grow. Because of the "Wildcard" setup, you can add 100 more devices without changing a single line of code.
+* **Quality:** I used **Asynchronous Threading**. This ensures the website dashboard stays fast and smooth, even when all 20 devices are sending data at the same time.
+* **Security:** I built an **Automation Guard**. If a device gets too hot (over 45°C), the gateway automatically "freezes" it. It stops listening to that device to keep the rest of the network safe.
 
 ---
 
-## 4. Evaluation Rubric
+## Links
+* **Project Report:** [Report here](./Network%20Programming%20and%20Telecomm%20Final%20Project%20Report.pdf)
+* **Demo Video:** [Demo here](https://youtu.be/sUkILawJK74)
 
-| Criteria | Description | Weighting |
-| :--- | :--- | :--- |
-| **Functional Demo** | Successful demonstration of a working application that meets all project requirements. | 50% |
-| **Network Technical Knowledge** | Evidence of understanding sockets, protocols (TCP/UDP/MQTT), and data encapsulation. | 30% |
-| **Technical Significance** | Alignment with 2026 industry standards and relevance to the CPAN226 curriculum. | 20% |
-| **Video Effectiveness** | Clarity of explanation and quality of the 5-minute demonstration. | 10% |
+---
+
+## How to Run
+To run this project on your machine, follow these steps:
+
+1. **Set up the Environment:**
+   ```bash
+   # Create a fresh virtual environment
+   python3 -m venv iot_env
+   
+   # Activate the environment
+   source iot_env/bin/activate
+   
+   # Install the library versions from the requirements file
+   pip install -r requirements.txt
+   ```
+2.  **Start the MQTT Broker:**
+    Make sure `mosquitto` is running on your computer.
+3.  **Run the Gateway:**
+    ```bash
+    python3 gateway.py
+    ```
+4.  **Run the Devices:**
+    ```bash
+    python3 devices.py
+    ```
+
+---
+
+## Tech Stack
+* **Language:** Python
+* **Data Format:** JSON Serialization
+* **Networking Protocol:** MQTT (Paho-MQTT 2.1.0)
+* **Web Framework:** Flask (Dashboard)
+* **Message Broker:** Mosquitto
+* **Editor:** VS Code
